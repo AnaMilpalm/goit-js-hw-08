@@ -26,5 +26,25 @@ const images = [
 ];
 
 const gallery = document.querySelector('.gallery');
-console.log("🚀 ~ gallery:", gallery)
-const imagesPuted = gallery.insertAdjacentHTML('afterbegin', images);
+
+const markup = images
+ .map(img => `<li class="img-item"><img src=${img.url} alt=${img.alt} "></li>`)
+   .join("");
+ console.log("🚀 ~ markup:", markup);
+
+ gallery.innerHTML = markup;
+
+ 
+
+  //  images.forEach(image =>  {
+  //   const imgElement = document.createElement('img');
+  //    imgElement.src = image.url;
+  //   imgElement.alt = image.alt;
+  //   imgElement.classList ="img-item";
+
+
+  //   gallery.append(imgElement);
+  //  })
+  
+
+
