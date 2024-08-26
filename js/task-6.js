@@ -3,50 +3,40 @@ function getRandomHexColor() {
     .toString(16)
     .padStart(6, 0)}`;
 }
-const controls = document.querySelector("#controls");
-console.log("🚀 ~ controls:", controls)
-const input = document.querySelector('input[type="number"]');
 
-const btnCreate = document.querySelector('button[type="button"][data-create]');
-const btnDestroy = document.querySelector('button[type="button"][data-destroy]');
+const input = document.querySelector('#controls input[type="number"]');
+const btnCreate = document.querySelector('#controls button[data-create]');
+const btnDestroy = document.querySelector('#controls button[data-destroy]');
 const boxes = document.querySelector('#boxes');
-console.log("🚀 ~ btnDestroy:", btnDestroy)
 
-input.addEventListener('input', updateInputValue);
-let inputValue = 0;
 
-function updateInputValue(event) {
-  inputValue = input.value;
-  console.log("🚀 ~ inputValue ~ inputValue:", inputValue)
-}
-
-function createElements (event) {
-
-  const squares = document.querySelectorAll('.square');
-
-  squares.forEach(square => square.remove());
-
-  if (inputValue >= 1 && inputValue <= 100) {
-    for (let i = 0; i < inputValue; i++) {
-      const square = document.createElement("div");
-      square.classList.add("square");
-      square.style.width = `${30 + i * 10}px`;
-      square.style.height = `${30 + i * 10}px`;
-      square.style.backgroundColor = getRandomHexColor();
-      boxes.append(square);
-      
-    } 
+btnCreate.addEventListener('click', () => {
+  const amount = parseInt(input.value, 10);
+  if (amount >= 1 && amount <= 100) {
+    createBoxes(amount);
+    input.value = ''; 
   }
-  input.value = "";
+});
 
-}
+btnDestroy.addEventListener('click', destroyBoxes);
 
-btnCreate.addEventListener('click', createElements);
-btnDestroy.addEventListener('click', destroyElements);
-
-function destroyElements(event) {
-
-  boxes.innerHTML = "";
+function createBoxes(amount) {
+  boxes.innerHTML = '';
  
+  const elements = [];
+  for (let i = 0; i < amount; i++) {
+    const div = document.createElement('div');
+    div.classList.add('square');
+    div.style.width = `${30 + i * 10}px`;
+    div.style.height = `${30 + i * 10}px`;
+    div.style.backgroundColor = getRandomHexColor();
+    elements.push(div);
+  }
+
+  boxes.append(...elements);
 }
 
+
+function destroyBoxes() {
+  boxes.innerHTML = '';
+}
