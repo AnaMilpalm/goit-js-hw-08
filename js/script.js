@@ -98,17 +98,24 @@ const images = [
         const currentEl = event.target.closest('.js-image-item')
         console.log(currentEl);
 
-        const currentImage = images.find(image => image.original);// на уроці шукали за id, як знайти відповідну картинку, якщо id немає?
+        const currentImage = images.find(image => image.original);// на уроці шукали за id, 
+        // як знайти відповідну картинку, якщо id немає?
 
-        const instance = basicLightbox.create(`
+        const instance = basicLightbox.create(images) 
+          return images.map(image => {
+            return `
             <div class="modal">
-        <img src="${currentImage.original}" alt="${currentImage.description}">
+
+           <img data-source="${image.original}" alt="${image.description}">
 
           </div>
-        `)
+        `
+          })
+          instance.show()
+        }
         
-        instance.show()
-    }
+       
+    
 
 
 
