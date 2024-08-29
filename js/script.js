@@ -101,17 +101,10 @@ const images = [
         const currentImage = images.find(image => image.original);// на уроці шукали за id, 
         // як знайти відповідну картинку, якщо id немає?
 
-        const instance = basicLightbox.create(images) 
-          return images.map(image => {
-            return `
-            <div class="modal">
-
-           <img data-source="${image.original}" alt="${image.description}">
-
-          </div>
-        `
-          })
-          instance.show()
+        const instance = basicLightbox.create(`
+          <img src="${event.target.dataset.source}" width="1112" height="640"/>
+        `);
+            instance.show();
         }
         
        

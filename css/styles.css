@@ -46,8 +46,7 @@ img {
     max-width: 358px;  
 }
 
-.modal 
-
-/* .gallery > li:hover {
-/* cursor: pointer; 
-} */
+.gallery >li:hover {
+    transform: scale(0.5);
+    transition: 3000ms ease;
+}
