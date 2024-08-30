@@ -100,7 +100,7 @@ const images = [
         }
 
         const instance = basicLightbox.create(`
-          <img src="${currentImage}" width="1112" height="640"/>
+          <img src="${currentImage.original}" width="1112" height="640"/>
         `);
             instance.show();
         }
