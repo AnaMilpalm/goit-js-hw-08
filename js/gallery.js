@@ -88,21 +88,19 @@ const images = [
     container.addEventListener('click', onClickImage);
 
     function onClickImage(event) {
-        // console.log(event.target);
-       
-
-        // const currentEl = event.target.closest('.js-image-item');
-        if(event.target === event.currentTarget) {
+      event.preventDefault(); 
+        if(event.target.nodeName !== 'IMG') {
             return;
         }
-        const currentEl = event.target.closest('.js-image-item')
-        console.log(currentEl);
+        
+        const currentImage = images.find(image => image.original === event.target.dataset.source);
 
-        const currentImage = images.find(image => image.original);// на уроці шукали за id, 
-        // як знайти відповідну картинку, якщо id немає?
+        if (!currentImage) {
+          return;
+        }
 
         const instance = basicLightbox.create(`
-          <img src="${event.target.dataset.source}" width="1112" height="640"/>
+          <img src="${currentImage}" width="1112" height="640"/>
         `);
             instance.show();
         }
